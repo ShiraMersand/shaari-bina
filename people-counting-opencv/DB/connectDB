@@ -1,0 +1,26 @@
+
+import pandas as pd
+import pyodbc
+
+class connectDB:
+
+    conn = pyodbc.connect('Driver={SQL Server};'
+                          'Server=DESKTOP-ROECGEC;'
+                          'Database=SR_project;'
+                          'Trusted_Connection=yes;')
+
+    cursor = conn.cursor()
+    # cursor.execute('SELECT * FROM Users')
+    #
+    # for row in cursor:
+    #     print(row)
+
+    import time
+time_start = time.time()
+
+     self.cursor.execute("INSERT INTO Videos ( location_id,start_time,end_time,num_detected,num_permitted,is_model_true,is_valid,is_new,user_id_update,date_update ) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                   ("1",time.time() , time.time(), 3,4,True,True,False,"3",time.time()))
+    conn.commit()
+    sql_query = pd.read_sql_query('SELECT * FROM SR_project.dbo.Users',conn)
+    print(sql_query)
+    print(type(sql_query))
